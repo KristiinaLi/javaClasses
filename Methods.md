@@ -244,7 +244,6 @@ StringBuilder line = new StringBuilder(); // This is the part I got help from Ch
 ```
 
 ## Finally figured out another way
-
 /*Hard:
 1. Create a program, where user can provide a title and a small text below the story.
 Title should be wrapped with ====== at top and bottom, based on the title length.
@@ -384,6 +383,7 @@ public static String checkNumber(int number){
 // if we want to return a text, then instead of void, we have to use String
 ```
 
+## Create a text with borders with Oscar's comments
 ```java
   import java.util.Scanner;
 
@@ -486,7 +486,6 @@ public class Main {
 // 7, 12, 18 
 // Needs to sum them all together
 
-
 public class Main {
   public static void main(String[] args) {
     int number1 = 7;
@@ -553,4 +552,42 @@ public class Main {
           }
       }
   }
+```
+
+## Methods group work - Sum of 2 numbers - easy
+/*
+Easy:
+Sum of 2 numbers
+User provides 2 numbers
+Result is a sum of those numbers
+
+Example: 
+User inputs 5
+User inputs 6
+Result: 11
+  */
+  
+```java
+import java.util.Scanner;
+  
+public class Main {
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("Enter a number");
+    int number1 = scanner.nextInt();
+    scanner.nextLine();
+    System.out.println("Enter another number");
+    int number2 = scanner.nextInt();
+    scanner.nextLine();
+
+    int result = sum(number1, number2);
+    System.out.println("The sum of " + number1 + " and " + number2 + " is " + result);
+
+    scanner.close();
+  }
+    
+    public static int sum (int a, int b){
+    return a + b;
+  }
+}
 ```
