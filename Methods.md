@@ -5,6 +5,14 @@
 // After every input, it prints out a line =========
 // We can create a method, that creates this for us if we want something to be repeated multiple times. 
 
+// I might want to add my own custom method
+// I can do that by adding a new method
+// I don't have to add it, but I can
+// What happens in Vegas, stays in Vegas = What happens in this method, stays in this method. 
+// Other methods don't see what's going on in there. 
+// If you define a scanner in one method, it can't be used in another method.
+// In order to share a scanner between methods, you have to declare it in class, before the first method.
+
 ```java
 public class Main { // capital Main is a class name, and lowercase main is a method name
   public static void main(String[] args) {
