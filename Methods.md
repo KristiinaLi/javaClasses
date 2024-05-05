@@ -506,4 +506,51 @@ public class Main {
   }
 }
 ```
+
+## Party list exercise
+/*
+Hard:
+1. Fill the party list with people you would like to invite to the party.
+Check whether or not "Anna" is in the array.
+Check whether or not "Maris" is in the array.
+["Oskars", "Anna", "Andris"]
+Result: 
+"Anna is in the party list"
+"Maris is not in the party list"
+
+2. Guess the Number Game
+Generate a random number from 0 to 100
+Make the user guess the number. If it's too high, or too low, let the user know
+OPTIONAL: Give maximum of 6 guessues.
+*/
+
+```java
+public class Main {
+  public static void main(String[] args) {
+//Fill the party list with people you would like to invite to the party.
+    String[] partyList = {"Oskars", "Anna", "Andris"};
+    String name1 = "Anna";
+    String name2 = "Maris";
+
+//Use the created method to check whether or not "Anna" and "Maris" are in the array.
+    nameChecker(name1, partyList);
+    nameChecker(name2, partyList);
+    }
+
+// Create a method to check whether or not the provided name is in the party list.
+  public static void nameChecker(String name, String[] partyList) {
+    boolean isInvited = false;
+      for (int i = 0; i < partyList.length; i++) {
+      if (name.equals(partyList[i])) {
+        isInvited = true;
+        System.out.println(name + " is in the party list");
+        break; // Exit the loop once the name is found
+        }
+        }
+
+      if (!isInvited){
+        System.out.println(name + " is not in the party list");
+          }
+      }
+  }
 ```
