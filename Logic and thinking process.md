@@ -19,6 +19,58 @@ We throw 46, and now we want to know where we are placed with our result.
 // Add 46 to the array, find out the index of the number
 // Place = i + 1
 
+/* [8, 7, 5, 3, 2, 1]
+Where does 4 go to?
+
+1. Go through the array - for loop
+2. Find a number less than our number - if
+  3. Increment index by 1
+  4. Return index
+5. If we can't find a number smaller than our number
+6. Return total count + 1.
+  */
+   
+´´´java
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {8, 7, 5, 3, 2, 1}; // current race results
+        int number = 4; // our result
+        boolean thePlaceIsFound = false;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] < number){
+                i = i + 1;
+                System.out.println("Our place in race: " + i);
+                thePlaceIsFound = true;
+                break;
+            }
+        }
+
+        if(thePlaceIsFound == false){
+            System.out.println("Our place in race: " + arr.length + 1);
+        }
+    }
+}
+```
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    int[] arr = {8, 7, 5, 3, 2, 1}; // current race result
+    int number = 4; // our result
+    int place = getThePlace(arr, number);
+    System.out.println("Our place in race: " + place);
+ }
+
+  public static int getThePlace(int[] arr, int number){
+    for(int i = 0; i < arr.length; i++){
+      if(arr[i] < number){
+        return i + 1;
+                  }
+              }
+  return arr.length + 1;
+          }
+      }
+````
 
 ## Detect prime numbers?
 e.g. 11
