@@ -73,7 +73,7 @@ public class Main {
 ````
 
 ## Detect prime numbers?
-e.g. 11
+e.g. 11 only divided by 1 and itself.
 
 1.	Modulus function
 2.	For Loop
@@ -85,6 +85,13 @@ e.g. 11
 11 % 4 != 0
 11 % 5 != 0
 11 % 6 != 0
+
+Need to divide by all numbers from 1 to the number (1-11). 
+
+1. Go through the numbers from 2 to (number - 1)
+2. Check whether or not it is dividable (number % i == 0)
+3. If 2nd point is true --> it's not a prime number 
+4. If 2nd point false --> it's a prime number
 
 Ieva: while loop until the first number for which %number ==0 not all, just up to half of 11!
 
