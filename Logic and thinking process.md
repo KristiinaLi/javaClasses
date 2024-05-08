@@ -86,6 +86,8 @@ e.g. 11 only divided by 1 and itself.
 11 % 5 != 0
 11 % 6 != 0
 
+Ieva: while loop until the first number for which %number ==0 not all, just up to half of 11!
+
 Need to divide by all numbers from 1 to the number (1-11). 
 
 1. Go through the numbers from 2 to (number - 1)
@@ -93,8 +95,46 @@ Need to divide by all numbers from 1 to the number (1-11).
 3. If 2nd point is true --> it's not a prime number 
 4. If 2nd point false --> it's a prime number
 
-Ieva: while loop until the first number for which %number ==0 not all, just up to half of 11!
+## First option, but something is wrong
+```java
+public class Main {
+  public static void main(String[] args) {
+    boolean isAPrimeNumber = isPrime(5);
+    System.out.println(isAPrimeNumber);
+  }
+}
+    
+  public static boolean isPrime(int number){
+    for(int i = 2; i <= number; i++){
+      if(number % i == 0){
+        return false;
+      }
+    }
+    return true;
+}
+}
+```
 
+## Second, working option 
+```java
+public class Main {
+    public static void main(String[] args) {
+        for(int i = 0; i < 100; i++){
+            boolean isAPrimeNumber = isPrime(i);
+            System.out.println(i + " is a prime number - " + isAPrimeNumber);
+            }
+        }
+
+    public static boolean isPrime(int number){
+         for(int i = 2; i < number; i++){
+             if(number % i == 0){
+             return false;
+             }
+            }
+            return true;
+        }
+    }
+```
 
 ## Polindrome (how to detect it?)
 Aka
