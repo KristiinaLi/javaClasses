@@ -210,3 +210,13 @@ Scissors == Scissors
 
 1st time wins 
 Best out of 3 wins
+
+## The game of Tic Tac Toe
+
+1. player 1
+2. player 2
+3. Symbol x
+4. Symbol o
+5. Taking turns
+6. Choosing a square in the 3x3 maze
+7. if 3 of the same symbols in a row vertical/horizontal/diagonal, then "We have a winner!".
