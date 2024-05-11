@@ -146,4 +146,81 @@ public class Main {
 }
 ```
 
+## First column, every second row
+```java
+public class Main {
+  public static void main(String[] args) {
+    int[][] array = new int [5][5];
+   
+    for(int i = 0; i < array.length; i++){
+    int[] row = array[i];
+      for(int j = 0; j < row.length; j++){ 
+        row[j] = 1;
+        i = i + 1;
+        j = j + 5;
+      }
+    }
+    for(int i = 0; i < array.length; i++){
+      for(int j = 0; j < array[i].length; j++){
+        System.out.print(array[i][j] + " ");
+      }
+    System.out.println();
+    }
+  }
+}
+```
+
+## Fill in the 5x5 array
+## AI option
+/*
+Easy: 
+Fill the 5x5 array with numbers from 1 to 25
+1 2 3 4 5
+6 7 8 9 10
+...
+But you have to use for loop to fill it up automatically.
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    int[][] array = new int [5][5];
+   
+    for(int i = 0; i < array.length; i++){
+    int[] row = array[i];
+      for(int j = 0; j < row.length; j++){ 
+        row[j] = (i * 5) + j + 1;
+      }
+    }
+    for(int i = 0; i < array.length; i++){
+      for(int j = 0; j < array[i].length; j++){
+        System.out.print(array[i][j] + "   ");
+      }
+    System.out.println();
+    }
+  }
+}
+```
+
+## Better option
+```java
+public class Main {
+  public static void main(String[] args) {
+    int[][] array = new int [5][5];
+    int number = 1;
+   
+    for(int i = 0; i < array.length; i++){
+      for(int j = 0; j < array[i].length; j++){ 
+        if(number < 10){
+          System.out.print(" " + number + " ");
+        }else{
+          System.out.print(number + " ");
+      }
+    number = number + 1;
+    }
+    System.out.println();
+    }
+  }
+}
+```
+
 
