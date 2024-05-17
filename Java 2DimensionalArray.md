@@ -223,4 +223,28 @@ public class Main {
 }
 ```
 
+## Reference type vs value type
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    int number = 20;
+    number = changeNumber(number);
+    System.out.println(number);
+    int numberVoid = 20;
+    changeNumberVoid(numberVoid);
+    System.out.println(numberVoid);
+  }
+  
+  public static int changeNumber(int number){
+    number = 55;
+    return number;
+  }
+
+  public static void changeNumberVoid(int number){
+    number = 55; // This number will not change the numberVoid value.   
+  }
+}
+```
+
 
