@@ -357,5 +357,10 @@ public class Main {
       }  
     }
 ```
+https://github.com/KristiinaLi/javaClasses/assets/165931675/9eeb635b-6a43-487a-9dc6-06a46365569a
+
+![1__VfF_-1QHljCLERE0hSjsg](https://github.com/KristiinaLi/javaClasses/assets/165931675/5ab55043-b562-49c0-a36b-29f6aa34c8e5)
+
+
 
 
