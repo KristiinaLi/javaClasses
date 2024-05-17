@@ -361,6 +361,39 @@ https://github.com/KristiinaLi/javaClasses/assets/165931675/9eeb635b-6a43-487a-9
 
 ![1__VfF_-1QHljCLERE0hSjsg](https://github.com/KristiinaLi/javaClasses/assets/165931675/5ab55043-b562-49c0-a36b-29f6aa34c8e5)
 
+## Group work
+
+// Reference type vs value type
+// Easy: Create a copy of all primitive types (STRINGS INCLUDED)
+// Hard: Create a copy of an array
+
+## Reference Type
+Shortcut of a Folder: When you create a shortcut to a folder, the shortcut points to the original folder. Any changes you make by accessing the folder through the shortcut affect the original folder.
+In Java: A reference type variable points to an object. If you change the object using any reference to it, the change is reflected in all references.
+
+## Reference Types
+Objects and Arrays: These are always reference types. This includes:
+
+Classes: Any instance of a class (e.g., String, ArrayList, user-defined classes).
+Arrays: Even if they are arrays of primitive types (e.g., int[]).
+These hold references to the objects or arrays, which are stored on the heap.
+
+## Value Type
+Copying a Folder: When you copy a folder, you get a new folder with the same contents. Any changes you make to the new folder do not affect the original folder.
+In Java: A value type variable holds the actual value. When you copy a value type variable to another, you get a new copy of the value. Changes to the new copy do not affect the original value.
+
+## Value Types
+Primitive Data Types: These are always value types. Java has eight primitive data types:
+
+byte
+short
+int
+long
+float
+double
+char
+boolean
+These hold their data directly and are stored on the stack.
 
 
 
