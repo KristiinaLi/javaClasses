@@ -35,7 +35,7 @@ public class Main {
     if (rowChecker(grid, size) == true || columnChecker(grid, size) == true || diagonalChecker(grid, size)){
       System.out.println("You have won!");
     }
-    }
+  }
 
   public static void printArray(int[][] grid, int size) {
     for (int i = 0; i < size; i++) {
@@ -55,8 +55,8 @@ public class Main {
       return true;
     }else{
       return false;
-     }
-      }
+    }
+  }
 
   public static boolean columnChecker(int[][] grid, int size){
     if (grid[0][0] == 1 && grid[1][0] == 1 && grid[2][0] == 1){                         
@@ -67,8 +67,8 @@ public class Main {
       return true;
     }else{
       return false;
-        }
-      }
+    }
+  }
 
   public static boolean diagonalChecker(int[][] grid, int size){
     if (grid[0][0] == 1 && grid[1][1] == 1 && grid[2][2] == 1){
@@ -77,8 +77,8 @@ public class Main {
       return true;
     }else{
       return false;
-            }
     }
+  }
   
   public static void inputToIndex(int[][] grid, int size, int row, int column) {
     if (row == 1 && column == 1) {
@@ -104,15 +104,14 @@ public class Main {
     if (row == 2 && column == 3) {
       grid[1][2] = 1;
       printArray(grid, size);
-      }
+    }
     if (row == 3 && column == 1) {
       grid[2][0] = 1;
       printArray(grid, size);
-      }
+    }
     if (row == 3 && column == 2) {
       grid[2][1] = 1;
       printArray(grid, size);
-  ```
     }
     if (row == 3 && column == 3) {
       grid[2][2] = 1;
@@ -120,3 +119,4 @@ public class Main {
     }
     }
   }
+```
