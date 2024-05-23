@@ -226,4 +226,217 @@ public class Main {
   }
 ```
 
+## ArrayLists and Streams
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden table");
+        shopsItems.add("Round table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+
+        var filteredShopsItems = new ArrayList<String>();
+        for (var item: shopsItems){
+          if(item.contains("table")){
+            filteredShopsItems.add(item);
+          }
+        }
+      System.out.println(filteredShopsItems);
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden Table");
+        shopsItems.add("Round Table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+        // shopsItems.removeIf(x -> x.contains("table"));
+
+      //How can I filter the elements, how can I collect elements?
+        var filteredShopsItems = shopsItems
+          .stream()
+          .filter(item -> item.toLowerCase().contains("table"))
+          .collect(Collectors.toList());
+
+      //Exception: all of these are functions, and we can write them on different lines, without ";" at the end. 
+
+        System.out.println(filteredShopsItems);
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden Table");
+        shopsItems.add("Round Table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+      //Search bar
+      /*
+      Scanner sc = new Scanner(System.in);
+      String searchWord = sc.nextLine();
+      */
+      
+        // shopsItems.removeIf(x -> x.contains("table"));
+
+      //How can I filter the elements, how can I collect elements?
+        var filteredShopsItems = shopsItems
+          .stream()
+          .filter(item -> item.toLowerCase().contains("table"))
+          .collect(Collectors.toList());
+
+      //Exception: all of these are functions, and we can write them on different lines, without ";" at the end. 
+
+        System.out.println(filteredShopsItems);
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden Table");
+        shopsItems.add("Round Table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+      //Search bar
+      /*
+      Scanner sc = new Scanner(System.in);
+      String searchWord = sc.nextLine();
+      */
+      
+        // shopsItems.removeIf(x -> x.contains("table"));
+
+      //How can I filter the elements, how can I collect elements?
+        var filteredShopsItems = shopsItems
+          .stream()
+          //We can do actions here
+          .skip(3)
+          .limit(2)
+          .collect(Collectors.toList());
+
+      //Exception: all of these are functions, and we can write them on different lines, without ";" at the end. 
+
+        System.out.println(filteredShopsItems);
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden Table");
+        shopsItems.add("Round Table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+        // shopsItems.removeIf(x -> x.contains("table"));
+
+        shopsItems
+          .stream()
+          .skip(3)
+          .limit(2)
+          .forEach(x -> System.out.println("TEST " + x));
+         
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        var shopsItems = new ArrayList<String>();
+        shopsItems.add("Glass Table");
+        shopsItems.add("Wooden Table");
+        shopsItems.add("Round Table");
+        shopsItems.add("Chair");
+        shopsItems.add("Doors");
+        shopsItems.add("Trapdoor");
+        shopsItems.add("Couch");
+        shopsItems.add("Bed");
+
+      //Search bar
+      /*
+      Scanner sc = new Scanner(System.in);
+      String searchWord = sc.nextLine();
+      */
+      
+        // shopsItems.removeIf(x -> x.contains("table"));
+
+      /*
+      for (var item: shopsItems){
+        System.out.println(item); 
+      }
+
+       is the same as 
+.filter(x -> x.contains("table"))
+.forEach(x -> System.out.println("TEST " + x));
+        */
+
+        shopsItems
+          .stream()
+          .filter(x -> x.contains("table"))
+          .forEach(x -> System.out.println("TEST " + x));
+    }
+}
+```
+
 
