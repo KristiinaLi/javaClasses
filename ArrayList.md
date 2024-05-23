@@ -442,4 +442,127 @@ public class Main {
 ## Stream functions 
 Terminal Operations: stream() can be followed by various terminal operations like forEach(), reduce(), count(), findFirst(), anyMatch(), allMatch(), noneMatch(), etc.
 
+## Group work
 
+/*
+Easy: Create an integer ArrayList, skip the first 5 numbers. And then with the rest of them, print them out.
+*/
+
+## Easy
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    var numbers = new ArrayList<Integer>();
+    numbers.add(9);
+    numbers.add(14);
+    numbers.add(19);
+    numbers.add(31);
+    numbers.add(26);
+    numbers.add(28);
+    numbers.add(49);
+    numbers.add(53);
+    numbers.add(67);
+    numbers.add(87);
+
+    numbers
+      .stream()
+      .skip(5)
+      .forEach(x -> Print(x));
+    } 
+
+  public static void Print(Integer number) {
+     System.out.println();
+     System.out.println(number);
+     }
+}
+```
+
+## Something between easy and medium
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    var numbers = new ArrayList<Integer>();
+    numbers.add(9);
+    numbers.add(14);
+    numbers.add(19);
+    numbers.add(31);
+    numbers.add(26);
+    numbers.add(28);
+    numbers.add(49);
+    numbers.add(53);
+    numbers.add(67);
+    numbers.add(87);
+
+    for (int number: numbers){
+      if (number % 2 == 0){
+        Print(number);
+      }
+    }
+    
+    numbers
+      .stream()
+      .skip(5)
+      .collect(Collectors.toList());
+    } 
+
+  public static void Print(Integer number) {
+     System.out.println();
+     System.out.println(number);
+     return;
+     }
+}
+
+```
+
+/*
+Medium: Create an integer ArrayList, make sure they divide by 2, skip the first 5, limit to three and print them out from another function.
+*/
+
+## Medium
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    var numbers = new ArrayList<Integer>();
+    numbers.add(9);
+    numbers.add(16);
+    numbers.add(19);
+    numbers.add(26);
+    numbers.add(28);
+    numbers.add(31);
+    numbers.add(36);
+    numbers.add(44);
+    numbers.add(50);
+    numbers.add(53);
+    numbers.add(74);
+    numbers.add(68);
+    numbers.add(88);
+   
+    numbers
+      .stream()
+      .filter(number -> number % 2 == 0)
+      .skip(5)
+      .limit(3)
+      .forEach(x -> Print(x));
+    } 
+
+  public static void Print(Integer number) {
+     System.out.println();
+     System.out.println(number);
+     return;
+     }
+}
+
+```
