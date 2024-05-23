@@ -439,4 +439,7 @@ public class Main {
 }
 ```
 
+## Stream functions 
+Terminal Operations: stream() can be followed by various terminal operations like forEach(), reduce(), count(), findFirst(), anyMatch(), allMatch(), noneMatch(), etc.
+
 
