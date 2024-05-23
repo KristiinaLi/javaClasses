@@ -186,6 +186,44 @@ public class Main {
         shopsItems.add(item); // adds the item to the shopsItems arrayList
         System.out.println(item + " has been added to the store"); // Provide information to the user
       }
-      
   }
 ```
+
+
+## Groupwork
+
+```java
+/*
+Easy: Create an arrayList for integers
+Add 5 numbers.
+
+Filter the arrayList and print out only numbers that divide by 2 
+(number % 2 == 0)
+*/
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class Main {
+  public static void main(String[] args) {
+    var numbers = new ArrayList<Integer>();
+    numbers.add(53);
+    numbers.add(2);
+    numbers.add(74);
+    numbers.add(9);
+    numbers.add(28);
+
+    System.out.println(numbers);
+
+    var filteredArrayList = new ArrayList<Integer>();
+    for (Integer number: numbers){
+      if (number % 2 == 0){
+        filteredArrayList.add(number);
+      }
+    }
+    System.out.println(filteredArrayList);
+  }
+  }
+```
+
+
