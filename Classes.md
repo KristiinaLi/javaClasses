@@ -222,4 +222,112 @@ public class Book{
   }
   }
 ```
+## Create a class for an object that you can find on your table or for something you own - 
+For example: Vehicle
+Brand
+Year
+Color
+OwnersName
+
+Initialize 3 different objects out of this class, and print it out.
+
+Try to use as many data types as you can (int, String, boolean and so on)
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    var vehicle = new Vehicle("bicycle", "Scott", 2017, "red", true, 'S', 577.99f);
+    System.out.println("The first vehicle is a " + vehicle.color + " " + vehicle.brand  + " " + vehicle.type + " made in the year " + vehicle.year + "." + " It is a two wheeler " + "(" + vehicle.twoWheeler + ")" + " with an initial " + "*" + vehicle.initial + "*" + " and costs " + vehicle.price + "€.");
+    System.out.println();
+    /*
+    System.out.println(vehicle.type);
+    System.out.println(vehicle.brand);
+    System.out.println(vehicle.year);
+    System.out.println(vehicle.color);
+    System.out.println(vehicle.twoWheeler);
+    System.out.println(vehicle.initial);
+    System.out.println(vehicle.price);
+    */
+
+    var vehicle2 = new Vehicle("car", "Toyota", 2020, "black", false, 'T', 20000.55f);
+    System.out.println("The second vehicle is a " + vehicle2.color + " " + vehicle2.brand  + " " + vehicle2.type + " made in the year " + vehicle2.year + "." + " It is a two wheeler " + "(" + vehicle2.twoWheeler + ")" + " with an initial " + "*" + vehicle2.initial + "*" + " and costs " + vehicle2.price + "€.");
+    System.out.println();
+    /*
+    System.out.println(vehicle2.type);
+    System.out.println(vehicle2.brand);
+    System.out.println(vehicle2.year);
+    System.out.println(vehicle2.color);
+    System.out.println(vehicle2.twoWheeler);
+    System.out.println(vehicle2.initial);
+    System.out.println(vehicle2.price);
+    */
+
+    var vehicle3 = new Vehicle("motorcycle", "Harley Davidson", 2021, "blue", true, 'H', 19012.23f);
+    System.out.println("The third vehicle is a " + vehicle3.color + " " + vehicle3.brand  + " " + vehicle3.type + " made in the year " + vehicle3.year + "." + " It is a two wheeler " + "(" + vehicle3.twoWheeler + ")" + " with an initial " + "*" + vehicle3.initial + "*" + " and costs " + vehicle3.price + "€.");
+    System.out.println();
+    /*
+    System.out.println(vehicle3.type);
+    System.out.println(vehicle3.brand);
+    System.out.println(vehicle3.year);
+    System.out.println(vehicle3.color);
+    System.out.println(vehicle3.twoWheeler);
+    System.out.println(vehicle3.initial);
+    System.out.println(vehicle3.price);
+    */
+
+    var vehicle4 = new Vehicle("boat", "Yacht", 2019, "gray", false, 'Y', 32300.11f);
+    System.out.println("The fourth vehicle is a " + vehicle4.color + " " + vehicle4.brand  + " " + vehicle4.type + " made in the year " + vehicle4.year + "." + " It is a two wheeler " + "(" + vehicle4.twoWheeler + ")" + " with an initial " + "*" + vehicle4.initial + "*" + " and costs " + vehicle4.price + "€.");
+    System.out.println();
+    /*
+    System.out.println(vehicle4.type);
+    System.out.println(vehicle4.brand);
+    System.out.println(vehicle4.year);
+    System.out.println(vehicle4.color);
+    System.out.println(vehicle4.twoWheeler);
+    System.out.println(vehicle4.initial);
+    System.out.println(vehicle4.price);
+    */
     
+    var vehicle5 = new Vehicle("airplane", "Boeing 747", 2021, "white", false, 'B', 1632300.14f);
+    System.out.println("The fifth vehicle is a " + vehicle5.color + " " + vehicle5.brand  + " " + vehicle5.type + " made in the year " + vehicle5.year + "." + " It is a two wheeler " + "(" + vehicle5.twoWheeler + ")" + " with an initial " + "*" + vehicle5.initial + "*" + " and costs " + vehicle5.price + "€.");
+    System.out.println();
+    /*
+    System.out.println(vehicle5.type);
+    System.out.println(vehicle5.brand);
+    System.out.println(vehicle5.year);
+    System.out.println(vehicle5.color);
+    System.out.println(vehicle5.twoWheeler);
+    System.out.println(vehicle5.initial);
+    System.out.println(vehicle5.price);
+  */
+    
+    System.out.println("In total there are " + Vehicle.vehicleCount + " vehicles on our table.");
+    }
+  }
+```
+## The Vehicle class
+
+```java
+public class Vehicle{
+    public static int vehicleCount = 0;
+    public String type;
+    public String brand;
+    public int year;
+    public String color;
+    public boolean twoWheeler;
+    public char initial;
+    public float price;
+    
+ 
+  public Vehicle(String type, String brand, int year, String color, boolean twoWheeler, char initial, float price){
+    this.type = type;
+    this.brand = brand;
+    this.year = year;
+    this.color = color;
+    this.twoWheeler = twoWheeler;
+    this.initial = initial;
+    this.price = price;
+    vehicleCount++;
+  } 
+}
+```
