@@ -68,18 +68,19 @@ public class Person {
     public Integer birthyear;
 
   // this is a constructor, it is a method that is called when an object is created --> new Person(name, surname);
+  // constructor is a function, that is called when an object is created
   // no data type, it is retunring a person
   // You can provide values to constructor
 
-  // this keyword is describing current class
-  
+  // "this" keyword is describing current class
+
+ 
   public Person(String inputName, String inputSurname){
-    System.out.println("TEST 123");
     name = inputName;
     surname = inputSurname;
   }
 
-// new Person();
+  // new Person();
   public Person(){
   
   /*
@@ -88,6 +89,7 @@ public class Person {
   */
   }
 }
+
 ```
 
 ```java
