@@ -165,4 +165,61 @@ public class Book{
   }
   }
 ```
+
+```java
+public class Main {
+  public static void main(String[] args) {
+    var book = new Book("The Hobbit", "J.R.R. Tolkien", 310);
+// Reference of the book object is stored in the variable book
+    
+    System.out.println(book.title);
+    System.out.println(book.author);
+    System.out.println(book.pageCount);
+
+    var book2 = new Book(); // creates a new object with different values
+    System.out.println(book2.title);
+    System.out.println(book2.author);
+    System.out.println(book2.pageCount);
+
+    new Book();
+    new Book();
+    new Book();
+    new Book();
+
+    System.out.println(Book.totalBookCount);
+}
+}
+
+// A book, that has it's author, and book title to it. 
+// We create a book, and then we print out the values of the book in a fancy way. 
+
+// Title
+// ----------------------------------
+// Author
+```
+
+```java
+public class Book{
+  public static int totalBookCount = 0; // always has the same value
+  public String title;
+  public String author;
+  public int pageCount;
+
+  // "this" means that we are going to use the variables in this class
+  // A class that has no attributes, provides a service
+  
+  public Book (String title, String author, int pageCount){
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    totalBookCount++;
+  }
+
+  public Book(){
+    this.title = "Unknown";
+    this.author = "Unknown";
+    totalBookCount++;
+  }
+  }
+```
     
