@@ -10,6 +10,17 @@ Medium: Work with String User should be able to repeat all the actions infinitel
 
 Hard: Create a Book class and work with Book object to the ArrayList.
 
+# Difference between remove and delete
+Question: 
+What's the difference between using delete and remove?
+Isn’t using del and .remove() the same thing? I tried using del in the lesson that waas teaching me about remove but it didn’t work so I used .remove() instead. Why would it matter that I used ‘del’ instead of .remove()?
+
+Answer:
+del and .remove() achieve the same effect, but get at the data differently, so quite often, you would prefer one over the other. If you have the index of the item to be eliminated, del is probably best. But if you have the value that you want to eliminate, .remove() is likely to be best.
+
+Each of them get rid of one item at a time; in the case of .remove(), it is the first item with the specified value.
+
+
 # First part try-out
 ```java
 import java.util.ArrayList;
