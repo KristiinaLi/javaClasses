@@ -1,6 +1,7 @@
 ## To do list
 
-# Example of how it can be defined (public class Task --> public String name = "skjhegi"; or we can also just leave it be public String name;
+Example of how it can be defined (public class Task --> public String name = "skjhegi"; or we can also just leave it be public String name;
+```java
 public class Task{
   //name, description, isDone
   public String name = "akjhsd";
@@ -13,6 +14,7 @@ public class Task{
     this.description = decription;
   }
 }
+```
 
 # To-do-list code
 ## Main
@@ -127,5 +129,275 @@ public class TaskManager{
    // Get a random quote to stop procrastination
   // a list of done tasks - filter
   // a list of undone tasks - filter
+}
+```
+
+## Almost final code
+
+### Main.java (Is the UI - frontend)
+```java
+import java.util.Scanner;
+
+public class Main { 
+
+    public static TaskManager taskManager = new TaskManager();
+
+    public static void main(String[] args) {
+        
+      while(true){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose what you would like to do:");
+        System.out.println("  Press 1 to create a task");
+        System.out.println("  Press 2 to see to-do list");
+        System.out.println("  Press 3 to mark a task as done");
+        System.out.println("  Press x to exit");
+
+        var userInput = scanner.nextLine();
+        if(userInput.equals("1")){
+          createTask();
+        }else if(userInput.equals("2")){
+          showTodoList();
+        }else if(userInput.equals("3")){
+          System.out.println("Enter the finished task name:");
+          var taskName = scanner.nextLine();
+          taskManager.setTaskAsDone(taskName);
+        }else{
+          break;
+        }
+        }
+    }
+
+    public static void createTask(){
+        Scanner scanner = new Scanner(System.in);
+        // Input the task name
+        System.out.println("Please input the name of the task");
+        var name = scanner.nextLine();
+        // Input the task description
+        System.out.println("Please input the description of the task");
+        var description = scanner.nextLine();
+        
+        var task = new Task(name, description);
+        taskManager.addTask(task);
+    }
+
+    public static void showTodoList(){
+        var tasks = taskManager.getTasks();
+        for(var task : tasks){
+            System.out.println("Here are your TASKs");
+            System.out.println("  " + task.name);
+            System.out.println("  " + task.description);
+            System.out.println("  " + task.isDone);
+        }
+    }
+}
+```
+
+## TaskManager.java
+```java
+import java.util.ArrayList;
+
+public class TaskManager{
+  //MVP: Minimum Viable Product
+  //Be able to add a Task -> DONE
+  //Have a list of all the tasks -> getTasks();
+  //Set a task as done, by Task name
+
+  private ArrayList<Task> tasks = new ArrayList<Task>();
+
+  //Because we want to use the default construcor
+  // new TaskManager() - we don't need to add a custom constructor
+
+  public void addTask(Task task){
+    tasks.add(task);
+  }
+
+  public ArrayList<Task> getTasks(){
+    return tasks;
+  }
+
+  public void setTaskAsDone(String taskName){
+    tasks.stream()
+      .filter(x -> x.name.equals(taskName))
+      .findFirst()
+      .ifPresent(x -> x.isDone = true);
+  }
+
+  //BONUS:
+  //Get a random quote to stop procrastinating
+  //A list of undone tasks - filter
+  //A list of done tasks - filter
+}
+```
+
+## Task.java
+```java
+public class Task{
+  public String name;
+  public String description;
+  public boolean isDone;
+
+  // var task = new Task(name, description);
+  public Task(String name, String description){
+    this.name = name;
+    this.description = description;
+  }
+}
+```
+
+# Extra getters-and-setters
+
+## Main.java
+```java
+public class Main {
+  public static void main(String[] args) {
+    var item = new Item();
+    item.setName("This is a name");
+    var itemName = item.getName();
+  }
+
+}
+```
+
+## Item.java
+```java
+public class Item{
+  private String name; // if public, we could use item.name = "another name"; in the main method. But we don't want to do that. So we set it as private.
+  private int cost; // Gold pieces
+
+  /*
+  Getters and setters are useful when you want to make sure that the data is not being changed by accident. They operate on the private variables on the back end.
+  */
+
+  public void setName(String name) {
+    // Do some logic here e.g. username changed etc
+    this.name = name;
+    // Do some logic here
+  }
+  public String getName() {
+    return name;
+  }
+  public void setCost(int cost) {
+    this.cost = cost;
+  }
+  public int getCost() {
+    return cost;
+  }
+}
+```
+
+### Final to-do-list
+## Main.java
+```java
+import java.util.Scanner;
+
+public class Main { //Is the UI - frontend
+
+    public static TaskManager taskManager = new TaskManager();
+
+    public static void main(String[] args) {
+        actionPlan(); 
+    }
+
+    public static void createTask(){
+        Scanner scanner = new Scanner(System.in);
+        // Input the task name
+        System.out.println("Please input the name of the task");
+        var name = scanner.nextLine();
+        // Input the task description
+        System.out.println("Please input the description of the task");
+        var description = scanner.nextLine();
+        
+        var task = new Task(name, description);
+        taskManager.addTask(task);
+    }
+
+    public static void showTodoList(){
+        var tasks = taskManager.getTasks();
+        System.out.println("Here are your Tasks");
+        for(var task : tasks){
+            System.out.println("  " + task.name);
+            // System.out.println("  " + task.description);
+            System.out.println("  " + task.isDone);
+        }
+    }
+    public static void actionPlan(){
+      while(true){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Choose what you would like to do:");
+        System.out.println("  Press 1 to Create a task");
+        System.out.println("  Press 2 to See to-do-list");
+        System.out.println("  Press 3 to Mark a task as done");
+        System.out.println("  Press x to Exit");
+
+        var userInput = scanner.nextLine();
+        if(userInput.equals("x")){
+          System.out.println("Done for today. Bye!");
+          break;
+        }
+        if(userInput.equals("1")){
+          createTask();
+        }else if(userInput.equals("2")){
+          showTodoList();
+        }else if(userInput.equals("3")){
+          System.out.println("Enter the finished task name:");
+          var taskName = scanner.nextLine();
+          taskManager.setTaskAsDone(taskName);
+        }else{
+          System.out.println("Invalid input. Please try again.");
+        }
+    }
+  }
+}
+```
+
+## Task.java
+```java
+public class Task{
+  public String name;
+  public String description;
+  public boolean isDone;
+
+  // var task = new Task(name, description);
+  public Task(String name, String description){
+    this.name = name;
+    this.description = description;
+  }
+}
+```
+
+## TaskManager.java
+```java
+import java.util.ArrayList;
+
+public class TaskManager{
+  //MVP: Minimum Viable Product
+  //Be able to add a Task -> DONE
+  //Have a list of all the tasks -> getTasks();
+  //Set a task as done, by Task name
+
+  private ArrayList<Task> tasks = new ArrayList<Task>();
+
+  //Because we want to use the default construcor
+  // new TaskManager() - we don't need to add a custom constructor
+
+  public void addTask(Task task){
+    tasks.add(task);
+  }
+
+  public ArrayList<Task> getTasks(){
+    return tasks;
+  }
+
+  public void setTaskAsDone(String taskName){
+    tasks.stream()
+      .filter(x -> x.name.equals(taskName))
+      .findFirst()
+      .ifPresent(x -> x.isDone = true);
+  }
+
+  //BONUS:
+  //Get a random quote to stop procrastinating
+  //A list of undone tasks - filter
+  //A list of done tasks - filter
 }
 ```
