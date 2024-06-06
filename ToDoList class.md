@@ -285,7 +285,7 @@ public class Item{
 }
 ```
 
-### Final to-do-list
+# Final to-do-list
 ## Main.java
 ```java
 import java.util.Scanner;
