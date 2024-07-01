@@ -160,8 +160,6 @@ public class Main {
 
 ## Cheese.java
 ```java
-import java.util.ArrayList;
-
 public class Cheese {
     private String cheeseName;
     private float price;
