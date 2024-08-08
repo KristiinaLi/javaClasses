@@ -8,3 +8,29 @@ Entities or DTOs or Models
 
 ## How to divide
 ![image (3)](https://github.com/user-attachments/assets/f1310c78-a6ff-4fad-b67f-eafbf6965e8d)
+
+## UserCOntroller
+package com.datorium.Datorium.API.Controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserController {
+    //CRUD
+    //AddUser
+    //UpdateUser
+    //GetUser
+    //DeleteUser
+
+    @GetMapping("/test")
+    public String test(){
+        return "testy testy";
+    }
+}
+
+    @GetMapping("/add") //localhost:8080/test -> localhost:8080/user/test
+    public int add@RequestBody User user {
+
+    }
+}
