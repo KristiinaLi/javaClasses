@@ -182,3 +182,19 @@ public class DatoriumApiApplication { // Main class - app starting
 	// And then we provide a profile of the user (name, surname, age, e-mail)
 }
 ```
+
+# Going further
+![image (3)](https://github.com/user-attachments/assets/addf549c-5541-494b-9b81-c5553784139c)
+
+Repo goes back and forth to/from Database; same functions as controller
+
+CRUD = Creat, Read, Update, Delete
+
+## Encapsulation
+Encapsulation in Java is a fundamental concept in object-oriented programming (OOP) that refers to the bundling of data and methods that operate on that data within a single unit, which is called a class in Java. Java Encapsulation is a way of hiding the implementation details of a class from outside access and only exposing a public interface that can be used to interact with the class.
+
+In Java, encapsulation is achieved by declaring the instance variables of a class as private, which means they can only be accessed within the class. To allow outside access to the instance variables, public methods called getters and setters are defined, which are used to retrieve and modify the values of the instance variables, respectively. By using getters and setters, the class can enforce its own data validation rules and ensure that its internal state remains consistent.
+
+We want to keep it secure, as stable as it can be: Controller --> Service --> Repo --> DB
+If another service accesses Service from the side, and this continues as a long chain.
+We don't want anyone to use the same object. Every service is going to have their own repository, and own connection to DB. 
