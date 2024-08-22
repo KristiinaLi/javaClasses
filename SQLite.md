@@ -539,13 +539,20 @@ GROUP BY Owners.City
 ORDER BY TotalSales DESC;
 ```
 ### Calculate total Sales by Pet Kind
-
+```SQL
+SELECT Pets.Kind, SUM(Procedures.Price) AS TotalSales
+FROM Sales
+LEFT JOIN Procedures ON Sales.ProcedureCode = Procedures.ProcedureCode
+LEFT JOIN Pets ON Sales.PetID = Pets.PetID
+GROUP BY Pets.Kind
+ORDER BY TotalSales DESC;
+```
 
 ### Calculate total Sales by City and Pet Kind
 ```SQL
 SELECT Owners.City, Pets.Kind, SUM(Procedures.Price) AS TotalSales
 FROM Sales 
-JOIN Procedures ON Sales.ProcedureCode = Proceduresubcode.ProcedureCode 
+JOIN Procedures ON Sales.ProcedureCode = Procedures.ProcedureCode 
 JOIN Owners ON Pets.OwnerID = Owners.OwnerID
 JOIN Pets ON Pets.PetID = Sales.PetID
 GROUP BY Owners.City, Pets.Kind;
