@@ -443,4 +443,10 @@ SELECT Pets.Name
 FROM Pets
 LEFT JOIN Owners ON Pets.OwnerID = Owners.OwnerID
 WHERE Owners.OwnerID IS NULL;
+
+SELECT Procedures.ProcedureType, SUM(Procedures.Price) AS TotalSales
+FROM Sales
+JOIN Procedures 
+ON Sales.ProcedureCode = Procedures.ProcedureCode
+GROUP BY Procedures.ProcedureType;
 ```
