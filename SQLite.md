@@ -473,6 +473,9 @@ WHERE Pets.Sex = 'female' AND Owners.City = 'Detroit';*/
 
 # Second Lesson
 
+![image](https://github.com/user-attachments/assets/30a7c3c0-a532-4f32-bf7d-8e47e5951bbd)
+
+
 SELECT Pets.*, Owners.*
 FROM Pets LEFT JOIN Owners ON Pets.OwnerID = Owners.OwnerID;
 
@@ -523,3 +526,46 @@ JOIN Procedures
 ON Sales.ProcedureCode = Procedures.ProcedureCode
 GROUP BY Procedures.ProcedureType;
 ```
+
+# Teamwork
+### Calculate total Sales by City
+```SQL
+SELECT Owners.City, SUM(Procedures.Price) AS TotalSales
+FROM Sales 
+JOIN Procedures ON Sales.ProcedureCode = Procedures.ProcedureCode 
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+JOIN Pets ON Pets.PetID = Sales.PetID
+GROUP BY Owners.City
+ORDER BY TotalSales DESC;
+```
+### Calculate total Sales by Pet Kind
+
+
+### Calculate total Sales by City and Pet Kind
+```SQL
+SELECT Owners.City, Pets.Kind, SUM(Procedures.Price) AS TotalSales
+FROM Sales 
+JOIN Procedures ON Sales.ProcedureCode = Proceduresubcode.ProcedureCode 
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+JOIN Pets ON Pets.PetID = Sales.PetID
+GROUP BY Owners.City, Pets.Kind;
+```
+
+### Calculate Average sales by City
+```SQL
+SELECT Owners.City, AVG(Procedures.Price) AS TotalSales
+FROM Sales 
+JOIN Procedures ON Sales.ProcedureCode = Procedures.ProcedureCode 
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+JOIN Pets ON Pets.PetID = Sales.PetID
+GROUP BY Owners.City
+ORDER BY TotalSales DESC;
+```
+
+### If you have additional time, explore relationships with SQLight - ChatGPT to a 5yo
+Imagine you have two toy boxes. One box has a bunch of cars, and the other box has a bunch of drivers. Each car has a driver, and each driver has a car they drive.
+
+Now, what if you wanted to know which driver drives which car? You could put a sticker on each car with the driver's name. This way, whenever you pick up a car, you know exactly who drives it.
+
+In SQLite (which is like a big toy box for computers), a relationship is like the sticker that tells the computer which things (like cars and drivers) go together.
+
