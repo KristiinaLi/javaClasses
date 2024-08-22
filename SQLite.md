@@ -1,10 +1,15 @@
 # SQLite
 
 # First lesson - FILTERING
+
 Find all pets that are older than 5 years:
+```SQL
 SELECT FROM Pets WHERE Age > 5;
+```
 Find all owners living in a specific city:
+```SQL
 SELECT * FROM Owners WHERE City = 'Detroit';
+```
 Find all procedures that cost more than $100:
 SELECT * FROM Procedures WHERE Price > 100;
 Multiple Filters
@@ -85,6 +90,314 @@ SELECT AVG(Age) AS AverageAge
 FROM Pets
 WHERE OwnerID = 4782;
 
+Filtering by Exact Match - pets, who are male
+SELECT * FROM Pets WHERE Sex = 'male';
+
+Filtering by Range - pets age from 2 to 5 years
+SELECT * FROM Pets WHERE age BETWEEN 2 and 5;
+
+Filtering by Partial Match (LIKE) - Owners with ID starting with 13
+SELECT * FROM Pets WHERE OwnerID LIKE '13%';
+
+Filtering by Multiple Conditions (AND) - birds of age of 3 years
+SELECT * FROM Pets WHERE Kind='Bird' AND age=3;
+
+Filtering by Multiple Conditions (OR) - pets of age less than 2 years or birds
+SELECT * FROM Pets WHERE Kind='Bird' OR age<2;
+
+Filtering by NULL Values - filters pets with non-defined age
+SELECT * FROM Pets WHERE age IS NULL;
+
+Filtering by a Set of Values (IN) - filtering for birds and cats
+SELECT * FROM Pets WHERE Kind IN ('Bird', 'Cat');
+
+Filtering by Condition with NOT - pets who are not birds
+SELECT * FROM Pets WHERE NOT Kind='Bird';
+
+Filters names starting with 'C' and ending with 'y'
+SELECT * FROM Pets WHERE Name REGEXP '^C.y$'; .
+
+Filters Age in descending order:
+SELECT FROM Pets ORDER BY Age DESC;
+
+Filter names which starts with C and order by length of the Name:
+SELECT * FROM Pets WHERE Name LIKE 'C%' ORDER BY LENGTH(Name) ASC;
+
+This query will return the first 50 rows from the Pets table, ordered by OwnerID in ascending order:
+SELECT * FROM Pets ORDER BY OwnerID ASC LIMIT 50;
+
+Find all male pets older than 5 years:
+
+SELECT * FROM Pets WHERE Sex = 'male' AND Age > 5;
+Sort pets by age in descending order:
+
+SELECT * FROM Pets ORDER BY Age DESC;
+Sort pets by name alphabetically:
+
+SELECT * FROM Pets ORDER BY Name ASC;
+Count the number of pets of each kind:
+
+SELECT Kind, COUNT(*) AS NumberOfPets FROM Pets GROUP BY Kind;
+Find the average age of all pets:
+
+SELECT AVG(Age) AS AverageAge FROM Pets;
+Find the average age of dogs:
+
+SELECT AVG(Age) AS AverageAge FROM Pets WHERE Kind = 'Dog';
+Find pets with the same name:
+
+SELECT Name, COUNT(*) FROM Pets GROUP BY Name HAVING COUNT(*) > 1;
+Find 5 the oldest female pets:
+
+SELECT * FROM Pets WHERE Sex = 'female' ORDER BY Age DESC LIMIT 1;
+
+1. Filtering all pet names that are 10 characters long.
+```SELECT name FROM Pets WHERE LENGTH(name) = 10;```
+
+2. Filtering in "Pets" data dogs whose age is above 3 and whose name ends with "er"
+```SELECT * FROM Pets WHERE Age > 3 AND NAME LIKE '%er';```
+
+3. Filtering in all Pets Dogs with short names
+```SELECT * FROM Pets WHERE LENGTH(Name) BETWEEN 2 AND 3 AND Kind = 'Dog';```
+
+4. Filtering all female birds who are less than 3 years old
+```SELECT * FROM Pets WHERE Kind = 'Bird' AND Sex = 'female' AND Age <= 3;```
+
+5. Filtering all Pets with name "Simba"
+```SELECT * FROM Pets WHERE Name IN ('Simba');```
+
+```SQL
+SELECT * FROM Pets WHERE Kind='Dog' AND Name GLOB '*An*';
+SELECT * FROM Pets WHERE Kind='Dog' AND Name GLOB '*Vi*';
+SELECT * FROM Pets WHERE Kind='Dog' AND Name GLOB '*Kir*';
+SELECT * FROM Pets WHERE Kind='Dog' AND Name GLOB '*Han*';
+SELECT * FROM pets WHERE kind= 'Cat' OR kind='Rabbit';
+SELECT * FROM pets WHERE age BETWEEN 1 AND 5;
+SELECT City, COUNT(*) AS OwnerCount FROM owners GROUP BY City ORDER BY OwnerCount DESC LIMIT 5;
+SELECT Name, Age, Kind FROM Pets ORDER BY Age DESC LIMIT 1; -- the oldest Pet
+SELECT Kind, Name, Age FROM Pets WHERE (Kind, Age) IN (SELECT Kind, MAX(Age) FROM Pets GROUP BY Kind); -- the oldest Pet of every Kind
+SELECT Kind, COUNT(*) AS Count FROM Pets GROUP BY Kind; -- the no of Pets per Kind
+SELECT Kind, AVG(Age) AS Average_Age FROM Pets GROUP BY Kind; -- Average age per Kind
+SELECT p.Name AS PetName, p.Kind, o.Name AS OwnerName FROM Pets AS p JOIN Owners AS o ON p.OwnerID = o.OwnerID; -- Pets and Owners
+SELECT OwnerID, COUNT(*) AS PetCount FROM Pets GROUP BY OwnerID HAVING COUNT(*) > 5; -- Owners with more than 5 Pets
+
+SELECT Name FROM Pets WHERE Kind='Bird' 
+
+SELECT * FROM Pets WHERE Kind='Bird' AND Sex='female';
+
+SELECT * FROM Pets WHERE Kind='Cat' AND Name GLOB'si'; (NOT a lot Cats with si in name)
+
+SELECT * FROM Pets WHERE Kind='Dog' AND Name GLOB'si'; (Dogs are more)
+
+SELECT * FROM Pets WHERE Kind='Bird' AND Name GLOB'si'; (And only one bird)
+
+SELECT * FROM Pets WHERE LENGTH(Name) BETWEEN 2 AND 5;
+
+SELECT * FROM Pets WHERE Name BETWEEN 'A' AND 'D';
+
+SELECT * FROM Pets WHERE Kind='Dog' AND Name BETWEEN 'A' AND 'D';
+
+SELECT Name * FROM Pets ORDER BY Name ASC; (ordering names by alphabetically)
+
+SELECT COUNT(*) FROM Pets; (Counting the number of pets in the table 2327)
+
+SELECT AVG (Age) FROM Pets; (Calculates average age of all pets in the table witch is 11,22 years)
+
+SELECT Kind, COUNT(*) AS NumberOfPets FROM Pets GROUP BY Kind; (This counts the number of pets for each kind Dogs 1231, Cats 863, Birds 233)
+
+SELECT Name FROM Pets WHERE Name LIKE 'C%e'; (Give all pets names which start with C and ends with E like Cassie, Cookie)
+
+SELECT name, COUNT(*) as name_count FROM pets GROUP BY name ORDER BY name_count DESC; (Gives most popular pet name, in our list is Biscuit most popular name)
+
+SELECT Kind, COUNT(*) AS CountOfKind
+FROM Pets
+GROUP BY Kind;
+```
+--If there are multiple birds with the same maximum age, only one of them will be returned!
+SELECT *
+FROM Pets
+WHERE Kind = 'Bird'
+ORDER BY Age DESC
+LIMIT 1;
+
+maximum number of pets owned by a single owner
+SELECT OwnerID, COUNT(*) AS NumberOfPets
+FROM Pets
+GROUP BY OwnerID
+ORDER BY NumberOfPets DESC
+LIMIT 1;
+
+who are those pets exactly ?
+SELECT *
+FROM Pets
+WHERE OwnerID = (
+    SELECT OwnerID
+    FROM Pets
+    GROUP BY OwnerID
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
+
+Male cat names that start with "S" who are aged less than 7 years:
+SELECT petid, name, ownerid FROM Pets WHERE kind='Cat' and name GLOB 'S' and age<7 and sex='male';
+
+Pets that have letter "b" as third in their name :
+SELECT * FROM PETS WHERE name LIKE 'b';
+
+Counting the number of pets each owner has:
+SELECT o.Name, COUNT(p.PetID) AS NumPets FROM Owners o LEFT JOIN Pets p ON o.OwnerID = p.OwnerID GROUP BY o.OwnerID;
+
+Who has the most pets (It's Barbara):
+SELECT o.Name, COUNT(p.PetID) AS NumPets FROM Owners o LEFT JOIN Pets p ON o.OwnerID = p.OwnerID GROUP BY o.OwnerID ORDER BY NumPets DESC LIMIT 1;
+
+Barbara owns all these pets:
+SELECT p.PetID, p.Name, p.Kind FROM Pets p WHERE p.OwnerID = ( SELECT o.OwnerID FROM Owners o LEFT JOIN Pets p ON o.OwnerID = p.OwnerID GROUP BY o.OwnerID ORDER BY COUNT(p.PetID) DESC LIMIT 1 );
+
+Oldest pet and their owner:
+SELECT p.Name, p.Age AS PetAge, o.Name AS OwnerName FROM Pets p JOIN Owners o ON p.OwnerID = o.OwnerID ORDER BY p.Age DESC LIMIT 1;
+
+The longest name:
+SELECT Name, LENGTH(Name) AS NameLength FROM Pets ORDER BY NameLength DESC LIMIT 1;
+
+5 random pets:
+SELECT * FROM Pets ORDER BY RANDOM() LIMIT 5;
+
+Who is the "Cat lady"? Turns out it's gentleman named Lionel and his five cats:
+SELECT o.OwnerID, o.Name, COUNT(p.PetID) AS NumCats FROM Owners o LEFT JOIN Pets p ON o.OwnerID = p.OwnerID WHERE p.Kind = 'Cat' GROUP BY o.OwnerID ORDER BY NumCats DESC LIMIT 1;
+
+And Lionel's cats are:
+SELECT p.PetID, p.Name, p.Kind FROM Pets p WHERE p.OwnerID = ( SELECT o.OwnerID FROM Owners o LEFT JOIN Pets p ON o.OwnerID = p.OwnerID WHERE p.Kind = 'Cat' GROUP BY o.OwnerID ORDER BY COUNT(p.PetID) DESC LIMIT 1 ) AND p.Kind = 'Cat';
+
+Average age of pets for each pet type:
+SELECT Kind, AVG(Age) AS AvgAge FROM Pets GROUP BY Kind;
+
+Finds duplicates in names:
+SELECT Name, COUNT() FROM Pets GROUP BY Name HAVING COUNT() > 1;
+
+Find all male pets older than 5 years:
+
+SELECT * FROM Pets WHERE Sex = 'male' AND Age > 5;
+Sort pets by age in descending order:
+
+SELECT * FROM Pets ORDER BY Age DESC;
+Sort pets by name alphabetically:
+
+SELECT * FROM Pets ORDER BY Name ASC;
+Count the number of pets of each kind:
+
+SELECT Kind, COUNT(*) AS NumberOfPets FROM Pets GROUP BY Kind;
+Find the average age of all pets:
+
+SELECT AVG(Age) AS AverageAge FROM Pets;
+Find the average age of dogs:
+
+SELECT AVG(Age) AS AverageAge FROM Pets WHERE Kind = 'Dog';
+Find pets with the same name:
+
+SELECT Name, COUNT(*) FROM Pets GROUP BY Name HAVING COUNT(*) > 1;
+Find 5 the oldest female pets:
+
+SELECT * FROM Pets WHERE Sex = 'female' ORDER BY Age DESC LIMIT 1;
+
+# Our group work
+/* Average age of pets by Kind
+SELECT Kind, AVG(Age) AS AverageAge
+FROM Pets
+GROUP BY Kind;*/
+
+/* Exclude dogs and cats
+SELECT * FROM Pets WHERE Kind != 'Dog' AND Kind != 'Cat';*/
+
+/* Owner ID and which pets they own
+SELECT OwnerID, GROUP_CONCAT(Name, ', ') AS Pets
+FROM Pets
+GROUP BY OwnerID;*/
+
+/* Oldest pet by Age
+SELECT Kind, Name, MAX(Age) AS OldestAge
+FROM Pets
+GROUP BY Kind;*/
+
+/* Most common pet name
+SELECT Name, COUNT(*) AS Frequency
+FROM Pets
+GROUP BY Name
+ORDER BY Frequency DESC
+LIMIT 5;*/
+
+/* All pets owned by owners from the same city "Livonia"
+SELECT Pets.Name AS PetName, Owners.Name AS OwnerName, Owners.City 
+FROM Pets 
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID 
+WHERE Owners.City = 'Livonia';*/
+
+/* Owner name and pet name the same
+SELECT p.PetID, p.Name AS PetName, p.Kind, p.Sex, p.Age, o.Name AS OwnerName
+FROM Pets p
+JOIN Owners o ON p.OwnerID = o.OwnerID
+WHERE p.Name = o.Name;*/
+
+/* All the owners of pet name Bruce
+SELECT Pets.Name AS PetName, Owners.Name AS OwnerName
+FROM Pets
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+WHERE Pets.Name='Bruce'*/
+
+/* Owner names and pet names they own
+SELECT Owners.Name AS HumanName, Pets.Name AS PetName
+FROM Owners
+JOIN Pets ON Owners.OwnerID = Pets.OwnerID
+GROUP BY Owners.Name, Pets.Name;*/
+
+/* Owners name and surname who havs at least 2 pets, in an alphabetical order
+SELECT 
+    p1.Name AS Pet1_Name,
+    p2.Name AS Pet2_Name,
+    o.Name AS Owner_First_Name,
+    o.Surname AS Owner_Last_Name
+FROM 
+    Pets p1
+    INNER JOIN Pets p2 ON p1.OwnerID = p2.OwnerID AND p1.PetID < p2.PetID
+    INNER JOIN Owners o ON p1.OwnerID = o.OwnerID
+ORDER BY 
+    o.Name,
+   o.Surname, 
+    p1.Name, 
+    p2.Name;*/
+    
+    
+/* All pets owned by owners with more than 1 pet, ordered by owner's first name alphabetically
+SELECT 
+    p.Name AS Pet_Name,
+    p.Kind,
+    p.Sex AS Pet_Sex,
+    p.Age AS Pet_Age,
+    o.Name AS Owner_First_Name,
+    o.Surname AS Owner_Last_Name
+FROM 
+    Pets p
+    INNER JOIN Owners o ON p.OwnerID = o.OwnerID
+WHERE 
+    p.OwnerID IN (
+        SELECT OwnerID
+        FROM Pets
+        GROUP BY OwnerID
+        HAVING COUNT(PetID) > 1
+    )
+ORDER BY 
+    o.Name;*/
+
+/* Pets with name length <3
+SELECT *
+FROM Pets
+WHERE LENGTH(Name) < 3;*/
+
+/* All female pets from Detroit 
+SELECT Pets.Name, Owners.City 
+FROM Pets 
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID 
+WHERE Pets.Sex = 'female' AND Owners.City = 'Detroit';*/
+
 # Second Lesson
 
 SELECT Pets.*, Owners.*
@@ -98,10 +411,36 @@ FROM Pets
 JOIN Owners ON Pets.OwnerID = Owners.OwnerID 
 WHERE Owners.City = 'Flint';
 
-SELECT Pets.*, Owners.City 
+SELECT Pets.Kind, COUNT(*) AS count
+FROM Pets
+GROUP BY Kind;
 FROM Pets LEFT JOIN Owners 
 ON Pets.OwnerID = Owners.OwnerID 
 WHERE Owners.City = 'Flint';
 
+SELECT Kind, COUNT(*) AS Count 
+FROM Pets 
+GROUP BY Kind
+ORDER BY Count DESC;
 SELECT Pets.*, Owners.City
 FROM Pets LEFT JOIN Owners ON Pets.OwnerID = Owners.OwnerID;
+
+SELECT Owners.City, COUNT(*) AS PetCount
+FROM Pets
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+GROUP BY Owners.City
+ORDER BY PetCount Desc;
+
+### For every city all three pet kinds are counted
+```SQL
+SELECT Owners.City, Pets.Kind, 
+COUNT(*) AS PetCount
+FROM Pets
+JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+GROUP BY Owners.City, Pets.kind;
+
+SELECT Pets.Name
+FROM Pets
+LEFT JOIN Owners ON Pets.OwnerID = Owners.OwnerID
+WHERE Owners.OwnerID IS NULL;
+```
