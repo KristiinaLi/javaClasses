@@ -118,3 +118,76 @@ public class UserRepo { // used for users, don't use "user" as part of the funct
    }
 }
 ```
+
+UserController.java
+```java
+package com.datorium.Datorium.API.Controllers;
+
+import com.datorium.Datorium.API.DTO.UpdateUserDTO;
+import com.datorium.Datorium.API.DTO.User;
+import com.datorium.Datorium.API.Repo.UserRepo;
+import com.datorium.Datorium.API.Services.UserService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    private UserService userService;
+    public UserController(){
+        // This code runs first, when creating UserController object
+        userService = new UserService();
+    }
+    //CRUD
+    //AddUser
+    //UpdateUser
+    //GetUser
+    //DeleteUser
+
+    @PostMapping("/add") //localhost:8080/test -> localhost:8080/user/test
+    public int add(@RequestBody User user) {
+        return userService.add(user);
+    }
+
+    @GetMapping ("/get")
+    public ArrayList<User> get() {
+        return userService.getUsers();
+    }
+
+    @PostMapping ("/update")
+    public User update(@RequestBody UpdateUserDTO updateUserDTO) {
+        return userService.update(updateUserDTO.userIndex, updateUserDTO.user); }
+
+    @PostMapping ("/addUser")
+    public String addUser(@RequestBody User user) {return userService.addUser(user); }
+}
+```
+
+UserService.java
+```java
+// Business logic
+package com.datorium.Datorium.API.Services;
+import com.datorium.Datorium.API.DTO.User;
+import com.datorium.Datorium.API.Repo.UserRepo;
+import java.util.ArrayList;
+
+public class UserService {
+    private UserRepo userRepo;
+
+    public UserService() { // we want to connect to the server; userService checks if the user is real; if the username us already in use
+        userRepo = new UserRepo();
+    }
+    public int add(User user){
+        return userRepo.add(user);
+    }
+    public ArrayList<User> getUsers(){
+        return userRepo.getUsers();
+    }
+    public User update(int userIndex, User updateUserDTO){
+        return userRepo.update(userIndex, updateUserDTO);
+    }
+    public String addUser(User user){ return userRepo.addUser(user); }
+}
+```
