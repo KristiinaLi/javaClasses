@@ -191,3 +191,149 @@ public class UserService {
     public String addUser(User user){ return userRepo.addUser(user); }
 }
 ```
+
+# 05.09.2024
+UserController.java
+```java
+package com.datorium.Datorium.API.Controllers;
+
+import com.datorium.Datorium.API.DTOs.UpdateUserDTO;
+import com.datorium.Datorium.API.DTOs.User;
+import com.datorium.Datorium.API.Services.UserService;
+import org.springframework.web.bind.annotation.*;
+import org.apache.coyote.BadRequestException;
+
+import java.util.ArrayList;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+    private UserService userService;
+    public UserController(){
+        userService = new UserService();
+    }
+    //CRUD
+    //AddUser
+    //UpdateUser
+    //GetUser
+    //DeleteUser
+
+    //@GetMapping
+    @PostMapping("/add") //localhost:8080/user/add
+    public void add(@RequestBody User user) throws BadRequestException {
+        userService.add(user);
+    }
+
+    @GetMapping("/get")
+    public ArrayList<User> get(){
+        return userService.get();
+    }
+
+    @PostMapping("/update")
+    public User update(@RequestBody UpdateUserDTO updateUserDTO){
+        return userService.update(updateUserDTO.userIndex, updateUserDTO.user);
+    }
+}
+```
+
+UserService.java
+```java
+package com.datorium.Datorium.API.Services;
+
+import com.datorium.Datorium.API.DTOs.User;
+import com.datorium.Datorium.API.Repo.UserRepo;
+import org.apache.coyote.BadRequestException;
+
+import java.util.ArrayList;
+
+// Business logic
+
+public class UserService {
+    private UserRepo userRepo;
+
+    public UserService() {
+        userRepo = new UserRepo();
+    }
+
+    public void add(User user) throws BadRequestException {
+        if (user.name.isEmpty()){
+            throw new BadRequestException("Name cannot be empty");
+        }
+        userRepo.add(user);
+    }
+
+    public ArrayList<User> get(){
+        return userRepo.get();
+    }
+
+    public User update(int userIndex, User updateUserDTO){
+        return userRepo.update(userIndex, updateUserDTO);
+    }
+}
+```
+
+UserRepo.java
+```java
+package com.datorium.Datorium.API.Repo;
+
+import com.datorium.Datorium.API.DTOs.User;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+public class UserRepo {
+
+    private ArrayList<User> users = new ArrayList<>();//Mocked db
+
+    public void add(User user) {
+        String url = "jdbc:sqlite:my.db";
+        try (var conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                var statement = conn.createStatement();
+                statement.execute("INSERT INTO people (name) VALUES ('" + user.name + "')");
+                //INSERT INTO people (name) VALUES ('');DROP TABLE people;--')
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public ArrayList<User> get(){
+        String url = "jdbc:sqlite:my.db"; // LOCATION OF database
+        var resultList = new ArrayList<User>(); // Create a list = prepare a box where to put the users
+        try (var conn = DriverManager.getConnection(url)) { // Connection is made
+            if (conn != null) { // Connection is not null
+                var statement = conn.createStatement(); // Create action what to do
+                var result = statement.executeQuery("SELECT name FROM people"); // Select all the names from table people
+                //Different Box, but more abstract; once we see one element, we cannot see it again
+                //Kind of like an array, list; never null, but can be empty;
+                while(result.next()){ // Going through abstract box
+                    var user = new User(); // Create new user
+                    user.name = result.getString("name"); // assign name to the new user
+                    resultList.add(user); // Add user to the box
+                    //While loop stops where there is no next element
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+        return resultList;
+    }
+
+    public User update(int numberOfChristmasPresents, User updateUserDTO){
+        var user = users.get(numberOfChristmasPresents);
+        user.name = updateUserDTO.name;
+        return user;
+    }
+}
+```
+
+User.java
+```java
+package com.datorium.Datorium.API.DTOs;
+
+public class User {
+    public String name;
+}
+```
