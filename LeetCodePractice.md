@@ -66,3 +66,91 @@ class Solution {
     }
 }
 ```
+
+# Assignment 2
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+
+Midagi erroris...
+
+```java
+public class Solution {
+
+    // Definition for singly-linked list.
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // Create a dummy node to simplify result handling
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+        int carry = 0;
+
+        // Loop until both l1 and l2 are exhausted and no carry is left
+        while (l1 != null || l2 != null || carry != 0) {
+            // Get the values from the nodes, or 0 if the list is exhausted
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+            
+            // Calculate the sum of the two digits and the carry
+            int sum = x + y + carry;
+            
+            // Update the carry for the next iteration
+            carry = sum / 10;
+            
+            // Create a new node with the current digit (sum % 10)
+            current.next = new ListNode(sum % 10);
+            current = current.next;
+            
+            // Move to the next nodes in both lists
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+
+        // The result starts at dummyHead.next
+        return dummyHead.next;
+    }
+
+    // Helper function to print the linked list
+    public static void printList(ListNode node) {
+        while (node != null) {
+            System.out.print(node.val);
+            if (node.next != null) System.out.print(" -> ");
+            node = node.next;
+        }
+        System.out.println();
+    }
+
+   public class Driver {
+    public static void main(String[] args) {
+        // Create the linked lists l1 = [2,4,3] and l2 = [5,6,4]
+        Solution.ListNode l1 = new Solution.ListNode(2);
+        l1.next = new Solution.ListNode(4);
+        l1.next.next = new Solution.ListNode(3);
+
+        Solution.ListNode l2 = new Solution.ListNode(5);
+        l2.next = new Solution.ListNode(6);
+        l2.next.next = new Solution.ListNode(4);
+
+        // Call addTwoNumbers from Solution class
+        Solution.ListNode result = Solution.addTwoNumbers(l1, l2);
+
+        // Print the result
+        Solution.printList(result); // Output: 7 -> 0 -> 8
+    }
+}
+```
