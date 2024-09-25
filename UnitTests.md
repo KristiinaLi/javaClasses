@@ -179,3 +179,63 @@ public class DateServiceTests {
     }
 }
 ```
+
+# TEST EXAMPLE
+## TestExampleApplication
+```java
+package com.example;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.GetMapping;
+
+@SpringBootApplication
+//@RestController
+//@CrossOrigin
+public class TestExampleApplication {
+
+	public static void main(String[] args) {
+		var userService = new UserService();
+
+		String name;
+		System.out.println(userService.getFullName("Kristiina", "Li"));
+
+		var mathService = new MathService();
+
+		System.out.println(mathService.getSum(1, 2));
+		SpringApplication.run(TestExampleApplication.class, args);
+	}
+
+}
+```
+
+## TestExampleApplicationTests
+```java
+package com.example;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.Assert;
+
+@SpringBootTest
+class TestExampleApplicationTests {
+
+	@Test
+	void WHEN_NameIsOskarsAndSurnameIsKlaumanis_THEN_Result_Oskars_Klaumanis() {
+		// Hard code your unit test to have it as straight forward as possible
+		// Arrange -> prepare data and services
+		var userService = new UserService();
+
+		// Act -> Do some action, usually call a method
+		var fullname = userService.getFullName("Kristiina", "Li");
+
+		// Assert -> Test whether or not the result is correct
+		Assert.isTrue(fullname.equals("Kristiina Li"), "Hey, the name should be with a space in between and should contain both name and surname");
+	}
+	//Unit test naming convention java
+	// What we receive, what we do, and what we return
+	// WHEN_NameIsKristiinaAndSurnameIsLi_THEN_ResultKristiinaLi
+}
+```
+
