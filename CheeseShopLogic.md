@@ -1,7 +1,5 @@
 # Cheese
-name
-how many
-price
+name, how many, price
 
 # Customer
 Name - username, password
@@ -41,5 +39,33 @@ Press 5 to Buy the cheese in cart; If not enough balance, decline the deal
 Press 6 to quit
 
 
+ArrayList - mutable size, can only store one type of data. 
 
-Pre
+private float price; 
+private String name; 
+
+setPrice;
+getPrice;
+setName;
+getName;
+
+### Item.java (blueprint, description)
+id, name, cost
+
+### ItemService.java (Shop manager)
+Add
+Remove
+Update
+GetItems
+CRUD - create/read/update/delete
+
+### Shop.java (Customer)
+addToCart
+removeFromCart
+getItemsFromCart
+checkout
+
+### Main.java (API - Application programming Interface)
+Inputs
+Outputs
+Connection between different classes
